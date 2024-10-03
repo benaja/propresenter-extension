@@ -6,6 +6,7 @@ import { MakerRpm } from "@electron-forge/maker-rpm";
 import { VitePlugin } from "@electron-forge/plugin-vite";
 import { FusesPlugin } from "@electron-forge/plugin-fuses";
 import { FuseV1Options, FuseVersion } from "@electron/fuses";
+import { MakerDMG } from "@electron-forge/maker-dmg";
 
 const config: ForgeConfig = {
   packagerConfig: {
@@ -18,7 +19,13 @@ const config: ForgeConfig = {
   rebuildConfig: {},
   makers: [
     new MakerSquirrel({}),
-    new MakerZIP({}, ["darwin"]),
+    new MakerZIP({}, ["darwin", "linux", "win32"]),
+    new MakerDMG({
+      name: "ProPresenterExtension",
+      appPath:
+        "./out/ProPresenterExtension-darwin-x64/ProPresenterExtension.app",
+    }),
+
     new MakerRpm({}),
     new MakerDeb({}),
   ],
@@ -57,6 +64,19 @@ const config: ForgeConfig = {
       [FuseV1Options.EnableEmbeddedAsarIntegrityValidation]: true,
       [FuseV1Options.OnlyLoadAppFromAsar]: true,
     }),
+  ],
+  publishers: [
+    {
+      name: "@electron-forge/publisher-github",
+      config: {
+        repository: {
+          owner: "benaja",
+          name: "propresenter-extension",
+        },
+        prerelease: true,
+        authToken: process.env.GITHUB_TOKEN,
+      },
+    },
   ],
 };
 

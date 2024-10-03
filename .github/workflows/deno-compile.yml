@@ -1,64 +1,64 @@
-name: Deno Compile for macOS and Windows
+# name: Deno Compile for macOS and Windows
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
-jobs:
-  build-mac:
-    name: Build macOS Executable
-    runs-on: macos-latest
+# jobs:
+#   build-mac:
+#     name: Build macOS Executable
+#     runs-on: macos-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v3
 
-      - name: Setup Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: 2.0.0-rc.10
+#       - name: Setup Deno
+#         uses: denoland/setup-deno@v1
+#         with:
+#           deno-version: 2.0.0-rc.10
 
-      - name: Install dependencies
-        run: |
-          deno install --allow-scripts
+#       - name: Install dependencies
+#         run: |
+#           deno install --allow-scripts
 
-      - name: Compile Deno Code to macOS Executable
-        run: |
-          deno compile --no-check --allow-net --allow-read --allow-write --allow-env --output propresenter-extension-mac main.ts
+#       - name: Compile Deno Code to macOS Executable
+#         run: |
+#           deno compile --no-check --allow-net --allow-read --allow-write --allow-env --output propresenter-extension-mac main.ts
 
-      - name: Upload macOS Executable
-        uses: actions/upload-artifact@v4
-        with:
-          name: macOS-executable
-          path: propresenter-extension-mac
+#       - name: Upload macOS Executable
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: macOS-executable
+#           path: propresenter-extension-mac
 
-  build-windows:
-    name: Build Windows Executable
-    runs-on: windows-latest
+#   build-windows:
+#     name: Build Windows Executable
+#     runs-on: windows-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v3
 
-      - name: Setup Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: 2.0.0-rc.10
+#       - name: Setup Deno
+#         uses: denoland/setup-deno@v1
+#         with:
+#           deno-version: 2.0.0-rc.10
 
-      - name: Install dependencies
-        run: |
-          deno install --allow-scripts
+#       - name: Install dependencies
+#         run: |
+#           deno install --allow-scripts
 
-      - name: Compile Deno Code to Windows Executable
-        run: |
-          deno compile --no-check --allow-net --allow-read --allow-write --allow-env --output propresenter-extension.exe main.ts
+#       - name: Compile Deno Code to Windows Executable
+#         run: |
+#           deno compile --no-check --allow-net --allow-read --allow-write --allow-env --output propresenter-extension.exe main.ts
 
-      - name: Upload Windows Executable
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-executable
-          path: propresenter-extension.exe
+#       - name: Upload Windows Executable
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: windows-executable
+#           path: propresenter-extension.exe
