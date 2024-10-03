@@ -29,7 +29,8 @@
     "eslint-plugin-import": "^2.25.0",
     "ts-node": "^10.0.0",
     "typescript": "~4.5.4",
-    "vite": "^5.0.12"
+    "vite": "^5.0.12",
+    "vite-plugin-static-copy": "^1.0.6"
   },
   "keywords": [],
   "author": {
@@ -38,7 +39,10 @@
   },
   "license": "MIT",
   "dependencies": {
+    "autoprefixer": "^10.4.20",
     "electron-squirrel-startup": "^1.0.1",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
     "vue": "^3.5.11"
   }
 }

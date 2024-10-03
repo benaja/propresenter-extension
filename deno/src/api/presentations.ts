@@ -1,4 +1,4 @@
-import { makeRequest } from "./network";
+import { makeRequest } from "./network.ts";
 
 export type Slide = {
   enabled: boolean;

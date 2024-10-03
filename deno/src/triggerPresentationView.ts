@@ -1,5 +1,5 @@
-import { triggerMacro } from "./api/macros";
-import { fetchActivePresentation } from "./api/presentations";
+import { triggerMacro } from "./api/macros.ts";
+import { fetchActivePresentation } from "./api/presentations.ts";
 
 export function startPresentationListener() {
   let lastPresentation: string | null = null;
