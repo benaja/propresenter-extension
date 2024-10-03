@@ -58,10 +58,17 @@ const createTray = () => {
   console.log(iconPath);
   tray = new Tray(iconPath);
 
-  // const contextMenu = Menu.buildFromTemplate();
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: "Beenden",
+      click: () => {
+        app.quit();
+      },
+    },
+  ]);
 
   tray.setToolTip("ProPresenter Extension");
-  // tray.setContextMenu(contextMenu);
+  tray.setContextMenu(contextMenu);
 
   tray.on("click", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
@@ -76,6 +83,10 @@ const createTray = () => {
         mainWindow.show();
       }
     }
+  });
+
+  tray.on("right-click", () => {
+    tray?.popUpContextMenu();
   });
 };
 
