@@ -24,7 +24,7 @@ jobs:
 
       - name: Compile Deno Code to macOS Executable
         run: |
-          deno compile --no-check --allow-net --allow-read --allow-write --allow-env --output=app-macos ./main.ts
+          deno compile --no-check --allow-net --allow-read --allow-write --allow-env --output app-macos main.ts
 
       - name: Upload macOS Executable
         uses: actions/upload-artifact@v3
@@ -47,7 +47,7 @@ jobs:
 
       - name: Compile Deno Code to Windows Executable
         run: |
-          deno compile --no-check --allow-net --allow-read --allow-write --allow-env --no-terminal --output=app-windows.exe ./main.ts
+          deno compile --no-check --allow-net --allow-read --allow-write --allow-env --no-terminal --output app-windows.exe main.ts
 
       - name: Upload Windows Executable
         uses: actions/upload-artifact@v3
