@@ -75,6 +75,8 @@ const config: ForgeConfig = {
         },
         prerelease: true,
         authToken: process.env.GITHUB_TOKEN,
+        force: true,
+        draft: true,
       },
     },
   ],
