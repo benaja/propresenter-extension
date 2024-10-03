@@ -15,16 +15,21 @@ export function startPresentationListener() {
         return;
       }
       lastPresentation = response.presentation.presentation_path;
+      console.log(
+        "Presentation changed to",
+        response.presentation.presentation_path
+      );
 
       const presentationPath = response.presentation.presentation_path;
+      const regex = /[\/\\]/g;
       const library =
-        presentationPath.split("/")[presentationPath.split("/").length - 2];
+        presentationPath.split(regex)[presentationPath.split(regex).length - 2];
 
       if (library === "Lieder") {
-        console.log("This is a song presentation");
+        console.log("This is a song");
         triggerMacro("Lieder Ansicht");
       } else {
-        console.log("This is not a song presentation");
+        console.log("This is not a song");
         triggerMacro("Normale Ansicht");
       }
     } catch (e) {

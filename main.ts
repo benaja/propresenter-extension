@@ -10,14 +10,14 @@ import { startPresentationListener } from "./src/triggerPresentationView.ts";
 // import rtfParse from "npm:rtf-parse";
 // import iconv from "iconv";
 
-export function add(a: number, b: number): number {
-  return a + b;
-}
+// export function add(a: number, b: number): number {
+//   return a + b;
+// }
 
-// Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
-if (import.meta.main) {
-  console.log("Add 2 + 3 =", add(2, 3));
-}
+// // Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
+// if (import.meta.main) {
+//   console.log("Add 2 + 3 =", add(2, 3));
+// }
 
 startPresentationListener();
 
