@@ -13,7 +13,7 @@ const config: ForgeConfig = {
     asar: true,
     icon: "./src/assets/images/icon",
     extraResource: [
-      "./src/assets/images/", // Include the directory with your assets in the final build
+      "./src/assets/", // Include the directory with your assets in the final build
     ],
   },
   rebuildConfig: {},

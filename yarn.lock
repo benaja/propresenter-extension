@@ -197,7 +197,7 @@
     "@electron-forge/plugin-base" "7.5.0"
     "@electron-forge/shared-types" "7.5.0"
 
-"@electron-forge/plugin-vite@^7.5.0":
+"@electron-forge/plugin-vite@^7.4.0":
   version "7.5.0"
   resolved "https://registry.yarnpkg.com/@electron-forge/plugin-vite/-/plugin-vite-7.5.0.tgz#abfe72aa6718cbb9d7e57ee5df0dd4833f5fd22f"
   integrity sha512-aJHJUL1vL6gtJlo3fyxPRqKe1X1zIVl//jPnrHFFQI5XyUQrOX58mHpZKpDws/b1bfGx68r6aaOaNhooXjwWAw==

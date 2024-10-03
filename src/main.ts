@@ -2,12 +2,12 @@ import { app, BrowserWindow, Menu, Tray } from "electron";
 import path from "path";
 import { startPresentationListener } from "./triggerPresentationView";
 import Store from "electron-store";
-// import electronSquirellStartup from "electron-squirrel-startup";
+import started from "electron-squirrel-startup";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
-// if (electronSquirellStartup) {
-//   app.quit();
-// }
+if (started) {
+  app.quit();
+}
 
 Store.initRenderer();
 
@@ -39,10 +39,21 @@ const createWindow = () => {
 
 let tray: Tray | null = null;
 const createTray = () => {
-  const iconPath = path.resolve(
-    app.getAppPath(),
-    "src/assets/images/propresenter_icon.png"
-  );
+  // check if running in production
+  let iconPath: string;
+  if (process.env.NODE_ENV === "development") {
+    iconPath = path.resolve(
+      app.getAppPath(),
+      "src/assets/images/propresenter_icon.png"
+    );
+  } else {
+    iconPath = path.resolve(
+      process.resourcesPath,
+      "assets/images/propresenter_icon.png"
+    );
+  }
+
+  console.log(iconPath);
   tray = new Tray(iconPath);
 
   // const contextMenu = Menu.buildFromTemplate();
