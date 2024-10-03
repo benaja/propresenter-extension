@@ -2,12 +2,12 @@ import { app, BrowserWindow, Menu, Tray } from "electron";
 import path from "path";
 import { startPresentationListener } from "./triggerPresentationView";
 import Store from "electron-store";
-import electronSquirellStartup from "electron-squirrel-startup";
+// import electronSquirellStartup from "electron-squirrel-startup";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (electronSquirellStartup) {
-  app.quit();
-}
+// if (electronSquirellStartup) {
+//   app.quit();
+// }
 
 Store.initRenderer();
 
