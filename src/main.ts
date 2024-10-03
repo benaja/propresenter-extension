@@ -1,15 +1,20 @@
 import { app, BrowserWindow, Menu, Tray } from "electron";
 import path from "path";
 import { startPresentationListener } from "./triggerPresentationView";
+import Store from "electron-store";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
+Store.initRenderer();
+
+let mainWindow: BrowserWindow | null = null;
+
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -39,29 +44,24 @@ const createTray = () => {
   );
   tray = new Tray(iconPath);
 
-  const contextMenu = Menu.buildFromTemplate([
-    {
-      label: "Open",
-      click: () => {},
-    },
-    {
-      label: "Focus Gamepads",
-      click: () => {},
-    },
-    { type: "separator" },
-    {
-      label: "Quit",
-      click: () => {
-        app.quit();
-      },
-    },
-  ]);
+  // const contextMenu = Menu.buildFromTemplate();
 
-  tray.setToolTip("PTZ Controller");
-  tray.setContextMenu(contextMenu);
+  tray.setToolTip("ProPresenter Extension");
+  // tray.setContextMenu(contextMenu);
 
   tray.on("click", () => {
-    // This can be used to toggle the app window, for example
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+      return;
+    }
+
+    if (mainWindow) {
+      if (mainWindow.isVisible()) {
+        mainWindow.hide();
+      } else {
+        mainWindow.show();
+      }
+    }
   });
 };
 
@@ -77,9 +77,9 @@ app.on("ready", () => {
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
+  // if (process.platform !== "darwin") {
+  //   app.quit();
+  // }
 });
 
 app.on("activate", () => {

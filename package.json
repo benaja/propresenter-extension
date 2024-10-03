@@ -41,6 +41,7 @@
   "dependencies": {
     "autoprefixer": "^10.4.20",
     "electron-squirrel-startup": "^1.0.1",
+    "electron-store": "^10.0.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
     "vue": "^3.5.11"

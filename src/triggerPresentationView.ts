@@ -1,5 +1,6 @@
 import { triggerMacro } from "./api/macros";
 import { fetchActivePresentation } from "./api/presentations";
+import { store, type StoreType } from "./store";
 
 export function startPresentationListener() {
   let lastPresentation: string | null = null;
@@ -20,17 +21,19 @@ export function startPresentationListener() {
         response.presentation.presentation_path
       );
 
+      const settings = store.get("settings") as StoreType["settings"];
+
       const presentationPath = response.presentation.presentation_path;
       const regex = /[\/\\]/g;
       const library =
         presentationPath.split(regex)[presentationPath.split(regex).length - 2];
 
-      if (library === "Lieder") {
+      if (library === settings.songLibraryName) {
         console.log("This is a song");
-        triggerMacro("Lieder Ansicht");
+        triggerMacro(settings.songMacroName);
       } else {
         console.log("This is not a song");
-        triggerMacro("Normale Ansicht");
+        triggerMacro(settings.defaultMacroName);
       }
     } catch (e) {
       console.log(e);

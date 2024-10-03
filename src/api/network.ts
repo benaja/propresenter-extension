@@ -1,8 +1,12 @@
+import { store } from "../store";
+
 export async function makeRequest(url: string, options?: RequestInit) {
+  const port = store.get("settings")?.port;
+
   if (!url.startsWith("http")) {
     url = url.startsWith("/")
-      ? `http://localhost:5001/v1${url}`
-      : `http://localhost:5001/v1/${url}`;
+      ? `http://localhost:${port}/v1${url}`
+      : `http://localhost:${port}/v1/${url}`;
   }
 
   const response = await fetch(url, options);

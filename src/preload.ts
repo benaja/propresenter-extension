@@ -16,10 +16,10 @@ function registerContextBridge(api, name) {
       exposedApi[key] = api[key]; // If the value is not a function, just expose it directly
     }
   }
-
-  contextBridge.exposeInMainWorld(name, exposedApi);
 }
 
-registerContextBridge(settings, "settings");
+// registerContextBridge(settings, "settings");
+
+contextBridge.exposeInMainWorld("settings", settings);
 
 // Expose the API to the renderer process
