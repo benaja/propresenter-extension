@@ -22,15 +22,15 @@ const config: ForgeConfig = {
       certificateFile: "./cert.pfx",
       certificatePassword: process.env.CERT_PASSWORD,
     }),
-    new MakerZIP({}, ["darwin", "linux", "win32"]),
+    // new MakerZIP({}, ["darwin", "linux", "win32"]),
     new MakerDMG({
       name: "ProPresenterExtension",
       appPath:
         "./out/ProPresenterExtension-darwin-x64/ProPresenterExtension.app",
     }),
 
-    new MakerRpm({}),
-    new MakerDeb({}),
+    // new MakerRpm({}),
+    // new MakerDeb({}),
   ],
   plugins: [
     new VitePlugin({
