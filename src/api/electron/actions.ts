@@ -55,7 +55,7 @@ async function createSongIfNotExist(song: Song) {
     const result = await client.oldApi("churchservice/ajax", "addNewSong", {
       bezeichnung: file.name,
       ccli: (file.ccli ? file.ccli.songNumber : "") || "",
-      author: file.ccli ? file.ccli.author : "",
+      author: (file.ccli ? file.ccli.author : "") || "",
       songcategory_id: "0",
       copyright: "",
       tonality: "",
