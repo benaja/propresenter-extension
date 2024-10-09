@@ -1,13 +1,14 @@
 import protobuf from "protobufjs";
 import * as fs from "node:fs";
 import { type rv } from "./proto/presentation";
+import { assetPath } from "../../utils/path";
 // import { randomUUID } from "node:crypto";
 // import { Buffer } from "node:buffer";
 // import { Transform } from "node:stream";
 
 export async function readPresentationFile(path: string) {
   return new Promise<rv.data.Presentation>((resolve, reject) => {
-    protobuf.load("./proto/presentation.proto", function (err, root) {
+    protobuf.load(assetPath("proto/presentation.proto"), function (err, root) {
       console.log("Loaded proto file");
       if (err) {
         return reject(err);

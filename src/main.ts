@@ -5,6 +5,7 @@ import Store from "electron-store";
 import started from "electron-squirrel-startup";
 import "./api/electron/actions";
 import { updateElectronApp } from "update-electron-app";
+import { assetPath } from "./utils/path";
 
 updateElectronApp();
 
@@ -46,18 +47,7 @@ const createWindow = () => {
 let tray: Tray | null = null;
 const createTray = () => {
   // check if running in production
-  let iconPath: string;
-  if (process.env.NODE_ENV === "development") {
-    iconPath = path.resolve(
-      app.getAppPath(),
-      "src/assets/images/propresenter_icon.png"
-    );
-  } else {
-    iconPath = path.resolve(
-      process.resourcesPath,
-      "assets/images/propresenter_icon.png"
-    );
-  }
+  const iconPath = assetPath("images/propresenter_icon.png");
 
   console.log(iconPath);
   tray = new Tray(iconPath);
