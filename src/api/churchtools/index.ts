@@ -4,35 +4,38 @@ import {
 } from "@churchtools/churchtools-client";
 import axiosCookieJarSupport from "axios-cookiejar-support";
 import tough from "tough-cookie";
-import dotenv from "dotenv";
+import { store, type StoreType } from "../../store";
 
 churchtoolsClient.setCookieJar(
   axiosCookieJarSupport.wrapper,
   new tough.CookieJar()
 );
-churchtoolsClient.setBaseUrl(dotenv.config().parsed.CHURCHTOOLS_URL);
-
-activateLogging();
-
-export const client = churchtoolsClient;
-
-let isLoggedIn = false;
-
-async function login() {
-  await churchtoolsClient.post("/login", {
-    username: dotenv.config().parsed.CHURCHTOOLS_USER,
-    password: dotenv.config().parsed.CHURCHTOOLS_PASSWORD,
-  });
-  isLoggedIn = true;
-}
-
-async function ensureLoggedIn() {
-  if (!isLoggedIn) {
-    await login();
-  }
-}
 
 export const useChurchToolsClient = () => {
+  const settings = store.get("settings") as StoreType["settings"];
+
+  churchtoolsClient.setBaseUrl(settings.churchtoolsUrl);
+
+  if (process.env.NODE_ENV === "development") {
+    activateLogging();
+  }
+
+  let isLoggedIn = false;
+
+  async function login() {
+    await churchtoolsClient.post("/login", {
+      username: settings.churchtoolsUser,
+      password: settings.churchtoolsPassword,
+    });
+    isLoggedIn = true;
+  }
+
+  async function ensureLoggedIn() {
+    if (!isLoggedIn) {
+      await login();
+    }
+  }
+
   return {
     async get(...args: Parameters<typeof churchtoolsClient.get>) {
       await ensureLoggedIn();

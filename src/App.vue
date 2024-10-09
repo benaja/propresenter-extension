@@ -18,6 +18,15 @@
         v-model="settings.defaultMacroName"
         label="Standard Makro Name"
       />
+
+      <p>Churchtools</p>
+      <TextField v-model="settings.churchtoolsUrl" label="Churchtools URL" />
+      <TextField v-model="settings.churchtoolsUser" label="Churchtools User" />
+      <TextField
+        v-model="settings.churchtoolsPassword"
+        label="Churchtools Password"
+        type="password"
+      />
     </div>
   </div>
 </template>
