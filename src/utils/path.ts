@@ -5,7 +5,7 @@ export function srcPath() {
   if (process.env.NODE_ENV === "development") {
     return path.resolve(app.getAppPath(), "src");
   } else {
-    return path.resolve(process.resourcesPath, "src");
+    return path.resolve(process.resourcesPath);
   }
 }
 

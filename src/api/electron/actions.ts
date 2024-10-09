@@ -3,7 +3,10 @@ import { client, useChurchToolsClient } from "../churchtools";
 import { store, type StoreType } from "../../store";
 import { fetchLibraryElements, Song } from "../propresenter-official/library";
 import { fetchPresentation } from "../propresenter-official/presentations";
-import { readPresentationFile } from "../propresenter-unofficial";
+import {
+  readPresentationFile,
+  requestFolderAccess,
+} from "../propresenter-unofficial";
 
 async function createSongIfNotExist(song: Song) {
   const presentation = await fetchPresentation(song.uuid);
@@ -49,6 +52,8 @@ export const actions = {
     }
 
     const songs = await fetchLibraryElements(settings.songLibraryName);
+
+    await requestFolderAccess();
 
     for (const song of songs) {
       await createSongIfNotExist(song);
