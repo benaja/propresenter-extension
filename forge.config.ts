@@ -18,7 +18,10 @@ const config: ForgeConfig = {
   },
   rebuildConfig: {},
   makers: [
-    new MakerSquirrel({}),
+    new MakerSquirrel({
+      certificateFile: "./cert.pfx",
+      certificatePassword: process.env.CERT_PASSWORD,
+    }),
     new MakerZIP({}, ["darwin", "linux", "win32"]),
     new MakerDMG({
       name: "ProPresenterExtension",
