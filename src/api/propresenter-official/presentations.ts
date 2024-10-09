@@ -38,3 +38,8 @@ export async function fetchActivePresentation() {
   const response = await makeRequest("presentation/active");
   return response as { presentation: Presentation | null };
 }
+
+export async function fetchPresentation(id: string) {
+  const response = await makeRequest(`presentation/${id}`);
+  return response.presentation as Presentation;
+}

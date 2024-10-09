@@ -37,5 +37,5 @@ export function startPresentationListener() {
     }
   }
 
-  setInterval(setPresentationViewByLibrary, 500);
+  // setInterval(setPresentationViewByLibrary, 500);
 }

@@ -1,5 +1,5 @@
-import { triggerMacro } from "./api/macros";
-import { fetchActivePresentation } from "./api/presentations";
+import { triggerMacro } from "./api/propresenter-official/macros";
+import { fetchActivePresentation } from "./api/propresenter-official/presentations";
 import { store, type StoreType } from "./store";
 
 export function startPresentationListener() {

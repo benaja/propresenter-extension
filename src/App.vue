@@ -1,5 +1,8 @@
 <template>
   <div class="p-10">
+    <h1 class="text-blue-500 font-bold text-lg">Aktionen</h1>
+    <SyncProPresenterSongs />
+
     <h1 class="text-blue-500 font-bold text-lg">Einstellungen</h1>
     <div class="space-y-4">
       <TextField v-model="settings.port" label="ProPresenter Port" />
@@ -22,6 +25,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watchEffect } from "vue";
 import TextField from "./components/fields/TextField.vue";
+import SyncProPresenterSongs from "./components/SyncProPresenterSongs.vue";
 
 const settings = ref(window.settings.getSettings());
 onMounted(() => {

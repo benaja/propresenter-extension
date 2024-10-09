@@ -1,4 +1,4 @@
-import { store } from "../store";
+import { store } from "../../store";
 
 export async function makeRequest(url: string, options?: RequestInit) {
   const port = store.get("settings")?.port;

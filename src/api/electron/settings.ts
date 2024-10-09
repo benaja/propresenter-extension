@@ -1,4 +1,4 @@
-import { store, type StoreType } from "../store";
+import { store, type StoreType } from "../../store";
 
 export const settings = {
   getSettings() {
